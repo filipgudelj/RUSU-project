@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!--http://127.0.0.1:5500/deploy-rusu-project/templates/prediction.html-->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/prediction.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="../static/heart.png" />
+    <title>Heart Disease Prediction</title>
+  </head>
+
+  <body>
+    <div class="image-wrapper">
+      <div class="title">Heart Disease Prediction</div>
+    </div>
+    <div class="form-wrapper">
+      <form action="{{url_for('prediction')}}" method="post">
+        <div class="form-elements">
+          <div class="form-element">
+            <label for="age">Age</label>
+            <input type="text" name="age" required="required" />
+          </div>
+
+          <div class="form-element">
+            <label for="sex">Sex</label>
+            <select name="sex" required="required">
+              <option disabled selected value>-- Select --</option>
+              <option value="0">Female</option>
+              <option value="1">Male</option>
+            </select>
+          </div>
+
+          <div class="form-element">
+            <label for="cp">Chest Pain Type</label>
+            <select name="cp" required="required">
+              <option disabled selected value>-- Select --</option>
+              <option value="0">Typical Angina</option>
+              <option value="1">Atypical Angina</option>
+              <option value="2">Non-anginal Pain</option>
+              <option value="3">Asymptomatic</option>
+            </select>
+          </div>
+
+          <div class="form-element">
+            <label for="trestbps">Resting Blood Pressure (mmHg)</label>
+            <input type="text" name="trestbps" required="required" />
+          </div>
+
+          <div class="form-element">
+            <label for="chol">Serum Cholesterol (mg/dl)</label>
+            <input type="text" name="chol" required="required" />
+          </div>
+
+          <div class="form-element">
+            <label for="fbs">Fasting Blood Sugar > 120 mg/dl</label>
+            <select name="fbs" required="required">
+              <option disabled selected value>-- Select --</option>
+              <option value="0">False</option>
+              <option value="1">True</option>
+            </select>
+          </div>
+
+          <div class="form-element">
+            <label for="restecg">Resting Electrocardiographic Results</label>
+            <select name="restecg" required="required">
+              <option disabled selected value>-- Select --</option>
+              <option value="0">Normal</option>
+              <option value="1">ST-T Wave Abnormality</option>
+              <option value="2">Left Ventricular Hypertrophy</option>
+            </select>
+          </div>
+
+          <div class="form-element">
+            <label for="thalach">Maximum Heart Rate</label>
+            <input type="text" name="thalach" required="required" />
+          </div>
+
+          <div class="form-element">
+            <label for="exang">Exercise Induced Angina</label>
+            <select name="exang" required="required">
+              <option disabled selected value>-- Select --</option>
+              <option value="0">No</option>
+              <option value="1">Yes</option>
+            </select>
+          </div>
+
+          <div class="form-element">
+            <label for="oldpeak">ST Depression Induced by Exercise</label>
+            <input type="text" name="oldpeak" required="required" />
+          </div>
+
+          <div class="form-element">
+            <label for="slope">Slope of the Peak Exercise ST Segment</label>
+            <select name="slope" required="required">
+              <option disabled selected value>-- Select --</option>
+              <option value="0">Upsloping</option>
+              <option value="1">Flat</option>
+              <option value="2">Downsloping</option>
+            </select>
+          </div>
+
+          <div class="form-element">
+            <label for="ca"
+              >Number of Major Vessels Colored by Flouroscopy</label
+            >
+            <select name="ca" required="required">
+              <option disabled selected value>-- Select --</option>
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+
+          <div class="form-element">
+            <label for="thal">Thalassemia</label>
+            <select name="thal" required="required">
+              <option disabled selected value>-- Select --</option>
+              <option value="1">Normal</option>
+              <option value="2">Fixed Defect</option>
+              <option value="3">Reversable Defect</option>
+            </select>
+          </div>
+
+          <div class="form-element">
+            <label for="model">Model</label>
+            <select name="model" required="required">
+              <option disabled selected value>-- Select --</option>
+              <option value="lr">Logistic Regression</option>
+              <option value="rf">Random Forest</option>
+              <option value="knn">K-Nearest Neighbor</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="middle-space"></div>
+
+        <div id="submit-wrapper">
+          <button class="submit-btn">Submit</button>
+          <div id="message">{{prediction_result}}</div>
+        </div>
+
+        <div class="bottom-space"></div>
+      </form>
+    </div>
+  </body>
+
+  <script>
+    if (
+      document.getElementById("message").innerHTML ==
+      "The person doesn't have a heart disease"
+    )
+      document.getElementById("submit-wrapper").style.background = "green";
+    else if (
+      document.getElementById("message").innerHTML ==
+      "The person has a heart disease"
+    )
+      document.getElementById("submit-wrapper").style.background = "red";
+  </script>
+</html>
