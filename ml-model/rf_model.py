@@ -1,6 +1,8 @@
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import classification_report
 from sklearn.metrics import accuracy_score
 import pandas as pd
 import numpy as np
@@ -45,3 +47,13 @@ print('Accuracy on Training data for Random Forest: ', training_data_accuracy)
 X_test_prediction = rf_model.predict(X_test)
 test_data_accuracy = accuracy_score(X_test_prediction, Y_test)
 print('Accuracy on Test data for Random Forest: ', test_data_accuracy)
+print()
+
+print("Confusion matrix: ")
+confusion_matrix = confusion_matrix(Y_test, X_test_prediction)
+print(confusion_matrix)
+print()
+
+print("Classification report: ")
+report = classification_report(Y_test, X_test_prediction)
+print(report)

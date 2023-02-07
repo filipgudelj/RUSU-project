@@ -1,6 +1,8 @@
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import classification_report
 import pandas as pd
 import pickle
 
@@ -22,3 +24,13 @@ print('Accuracy on Training data for Logistic Regression: ', training_data_accur
 X_test_prediction = lr_model.predict(X_test)
 test_data_accuracy = accuracy_score(X_test_prediction, Y_test)
 print('Accuracy on Test data for Logistic Regression: ', test_data_accuracy)
+print()
+
+print("Confusion matrix: ")
+confusion_matrix = confusion_matrix(Y_test, X_test_prediction)
+print(confusion_matrix)
+print()
+
+print("Classification report: ")
+report = classification_report(Y_test, X_test_prediction)
+print(report)
